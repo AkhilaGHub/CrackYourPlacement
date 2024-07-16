@@ -1,0 +1,43 @@
+Approach-1:
+class Solution {
+    public int findDuplicate(int[] nums) {
+        Arrays.sort(nums);
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]==nums[i+1]){
+                return nums[i];
+            }
+        }
+        return 0;
+    }
+}
+TC:O(NlogN),O(N)
+Approach-2:
+class Solution {
+    public int findDuplicate(int[] nums) {
+        int ans=-1;
+        HashSet<Integer>hs=new HashSet<>();
+        for(int e:nums){
+            if(hs.contains(e)){
+                ans=e;
+                break;
+            }
+            hs.add(e);
+        }
+        return ans;
+    }
+}
+TC:O(N),O(N)
+Approach-3:
+class Solution {
+    public int findDuplicate(int[] nums) {
+       for(int e:nums)
+       {
+        int ele=Math.abs(e);
+        if(nums[ele]<0)//if it is neg that becomes the dup as it is made -ve already
+        return ele;
+        nums[ele]=-nums[ele];
+       } 
+       return -1;
+    }
+}
+TC:O(N),O(1)
